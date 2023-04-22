@@ -40,7 +40,8 @@ namespace ApiNet6.Business.services
         public async Task<List<AddressGet>> GetAddressesAsync()
         {
             var entity = await AddressRepository.GetAysnc(null, null);
-            return Mapper.Map<List<AddressGet>>(entity);
+            var mappedEntity = Mapper.Map<List<AddressGet>>(entity);
+            return mappedEntity;
 
         }
 

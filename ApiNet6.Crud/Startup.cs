@@ -52,9 +52,10 @@ namespace ApiNet6.Crud
             services.AddScoped<IGenericRepository<Address>, GenericRepository<Address>>();
             services.AddScoped<IGenericRepository<Job>, GenericRepository<Job>>();
             services.AddScoped<IGenericRepository<Employee>, GenericRepository<Employee>>();
+            services.AddScoped<IGenericRepository<Team>, GenericRepository<Team>>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "dotnet-rgp", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiNet6.Crud", Version = "v1" });
             });
         }
 
@@ -65,7 +66,7 @@ namespace ApiNet6.Crud
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnet-rgp v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiNet6.Crud v1"));
             }
 
             using (var scope = app.ApplicationServices.CreateScope())
@@ -74,6 +75,8 @@ namespace ApiNet6.Crud
                 dbContext.Database.EnsureCreated();
 
             }
+
+            app.UseMiddleware<ExceptionMiddleWare>();
 
             app.UseHttpsRedirection();
 

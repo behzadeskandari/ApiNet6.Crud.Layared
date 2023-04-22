@@ -7,7 +7,6 @@ namespace ApiNet6.Crud.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-
     public class JobController : ControllerBase
     {
         private IJobService JobService { get; }
@@ -32,7 +31,7 @@ namespace ApiNet6.Crud.Controllers
             await JobService.UpdateJobAsync(jobUpdate);
             return Ok();
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("Delete")]
         public async Task<IActionResult> DeleteJob(JobDelete jobUpdate)
         {
@@ -42,10 +41,10 @@ namespace ApiNet6.Crud.Controllers
 
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IActionResult> GetJob()
+        public async Task<IActionResult> GetJob(int id)
         {
-            await JobService.GetJobAsync();
-            return Ok();
+            var t = await JobService.GetJobAsync(id);
+            return Ok(t);
 
         }
 

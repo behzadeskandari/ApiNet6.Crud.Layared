@@ -35,9 +35,9 @@ namespace ApiNet6.Business.services
             await Job.SaveChangesAsync();
         }
 
-        public async Task<JobGet> GetJobAsync()
+        public async Task<JobGet> GetJobAsync(int id)
         {
-            var entity = await Job.GetAysnc(null, null);
+            var entity = await Job.GetByIdAsync(id);
             return Mapper.Map<JobGet>(entity);
 
         }

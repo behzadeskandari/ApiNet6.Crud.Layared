@@ -16,7 +16,7 @@ namespace ApiNet6.Common.Interfaces
 
         Task<List<JobGet>> GetJobsAsync();
 
-        Task<JobGet> GetJobAsync();
+        Task<JobGet> GetJobAsync(int id);
 
         Task DeleteJobAsync(JobDelete jobDelete);
 

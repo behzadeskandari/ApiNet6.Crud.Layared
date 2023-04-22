@@ -31,7 +31,7 @@ namespace ApiNet6.Crud.Controllers
             await EmployeeService.UpdateEmployeeAsync(addressUpdate);
             return Ok();
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("Delete")]
         public async Task<IActionResult> DeleteEmployee(EmployeeDelete addressUpdate)
         {
@@ -43,17 +43,17 @@ namespace ApiNet6.Crud.Controllers
         [Route("Get/{id}")]
         public async Task<IActionResult> GetEmployee(int id)
         {
-            await EmployeeService.GetEmployeeAsync(id);
-            return Ok();
+            var t = await EmployeeService.GetEmployeeAsync(id);
+            return Ok(t);
 
         }
 
         [HttpGet]
-        [Route("Get/{id}")]
+        [Route("Get")]
         public async Task<IActionResult> GetEmployees([FromQuery]EmployeeFilter employeeFilter)
         {
-            await EmployeeService.GetEmployeesAsync(employeeFilter);
-            return Ok();
+            var t = await EmployeeService.GetEmployeesAsync(employeeFilter);
+            return Ok(t);
 
         }
     }

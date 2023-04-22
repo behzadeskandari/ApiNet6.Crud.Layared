@@ -30,11 +30,11 @@ namespace ApiNet6.Crud.Controllers
             await AddressService.UpdateAddressAsync(addressUpdate);
             return Ok();
         }
-        [HttpPut]
+        [HttpDelete]
         [Route("Delete")]
         public async Task<IActionResult> DeleteAddress(AddressDelete addressUpdate)
         {
-            await AddressService.DeleteAddressAsync(addressUpdate);
+             await AddressService.DeleteAddressAsync(addressUpdate);
             return Ok();
         }
 
@@ -42,8 +42,9 @@ namespace ApiNet6.Crud.Controllers
         [Route("Get/{id}")]
         public async Task<IActionResult> GetAddress()
         {
-            await AddressService.GetAddressesAsync();
-            return Ok();
+            var t = await AddressService.GetAddressesAsync();
+
+            return Ok(t);
 
         }
 
